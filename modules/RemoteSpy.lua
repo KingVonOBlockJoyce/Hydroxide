@@ -113,6 +113,10 @@ for _name, hook in pairs(methodHooks) do
         if typeof(instance) ~= "Instance" then
             return originalMethod(...)
         end
+
+        if not checkcaller() then
+            return originalMethod(...)
+        end
                 
         do
             local success = pcall(checkPermission, instance)
